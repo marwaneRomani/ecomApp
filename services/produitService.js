@@ -14,13 +14,11 @@ export default class ProduitService {
         return produits;
     }
 
-    async getProduit({ code }) {
-        const produit  = this.repository.findProduit({ code });
-    
-        return produit;
+    async saveProduit({ code, label, price }) {
+        this.repository.saveProduit({ code, label, price });
     }
 
-    async saveProduit({ code, libelle, prix }) {
-        this.repository.saveProduit({ code, libelle, prix });
+    getProductByCode(code) {
+        
     }
 }

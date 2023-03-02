@@ -2,43 +2,32 @@ import ProduitService from "../services/produitService.js";
 
 export default app => {
 
+    const products = [
+        {
+          code: 'PR1',
+          label: 'Camera',
+          price: 14000
+        },
+        {
+          code: 'PR2',
+          label: 'Booth',
+          price: 800
+        },
+        {
+          code: 'PR3',
+          label: 'Cable',
+          price: 700
+        }
+      ];
+
     const produitService = new ProduitService();
 
-    app.get("/produit", async (req, res, next) => {
-        try { 
-            const produits = await produitService.getAllProduits();
-            
-            res.status(200).send({ message: "success", produits });
+    app.post("/api/produit", (req, res, next) => {
+        // TODO: get the product info from req.body
+        
+        for (const product of products) {
+            produitService.saveProduit(product);
         }
-        catch(error) {
-            next(error);
-        }
-    })
-
-    app.get("/produit/:code", async (req, res, next) => {
-        try {
-            const { code } = req.body;
-            const produit = produitService.getProduit({ code });
-            
-            res.status(200).send({ message: "success", produit })
-
-        } catch (error) {
-            next(error)
-        }
-    });
-
-
-    app.post("/produit", async (req, res, next) => {
-        try {
-            const { code, libelle, prix } = req.body;
-
-            const produit = produitService.saveProduit({ code, libelle, prix });
-
-            res.status(200).send({ message: "produit enregistrer", produit })
-
-        } catch (error) {
-            next(error)
-        }  
     })
 
 }

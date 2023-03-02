@@ -1,18 +1,25 @@
-import mongoose from "mongoose"
+import mysql from "mysql";
 import { config } from "dotenv";
 
 config();
 
-export default  async () => {
+const connection = mysql.createConnection({
+    host: process.env.host,
+    user: process.env.user,
+    password: process.env.password,
+    database: process.env.dbName
+  });
 
-    try {
-        mongoose.set('strictQuery', false);
-        mongoose.connect(process.env.database_connection);
-        console.log('Db Connected');
-        
+
+const connect =  async () => {
+    try {                  
+        connection.connect();
     } catch (error) {
         console.log(error.message);
     }
 }
 
- 
+export {
+    connect,
+    connection
+}

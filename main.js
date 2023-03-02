@@ -1,7 +1,7 @@
 import express from "express";
 import { config } from "dotenv";
 import { default as expressApp } from "./server.js";
-import { default as databaseConnection } from "./database/dbConnection.js";
+import { connect as databaseConnection } from "./database/dbConnection.js";
 
 
 (async function StartServer() {
