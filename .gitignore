@@ -1,12 +1,2 @@
 /.env
 /node_modules
-api/orderRoute.js
-api/userRoute.js
-database/models/order.model.js
-database/models/panier.model.js
-database/models/produit.model.js
-database/models/user.model.js
-database/repository/order.repository.js
-database/repository/user.repository.js
-services/orderService.js
-services/userService.js
